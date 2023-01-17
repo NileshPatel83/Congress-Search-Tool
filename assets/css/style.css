@@ -2,6 +2,8 @@
     --background-color: rgb(46, 61, 79);
     --content-color: rgb(216, 233, 232);
     --submit-button-color: rgb(0, 189, 156);
+    --goback-button-color: rgb(233, 75, 103);
+    --font-color-white: white;
 }
 
 *{
@@ -40,9 +42,31 @@ main{
     text-align: center;
 }
 
+.result-main{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.form-content{
+    width: 25%;
+    background-color: var(--content-color);
+    padding: 1rem;
+}
+
+.result-content{
+    width: 75%;
+}
+
 h1{
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin: 1rem;
+}
+
+h2{
+    font-size: 1.5rem;
+    margin: 1rem;
+    color: var(--font-color-white);
 }
 
 input, select, button{
@@ -57,4 +81,8 @@ button{
     background-color: var(--submit-button-color);
     border: none;
     border-radius: 0.3rem;
+}
+
+#goback-button{
+    background-color: var(--goback-button-color);
 }
