@@ -2,18 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Library of Congress Search</title>
 </head>
 <body>
     <main>
-        <div>
+        <div class="content">
             <h1>Library of Congress Search Engine</h1>
             <form>
-                <input type="text" id="search-text" name="user-name">
+                <input type="text" id="search-text" name="search-text" placeholder="Search Text" required>
+                <select id="search-fromat" name="search-fromat" required>
+                    <option value disabled selected>Select a format...</option>
+                    <option value="Maps">Maps</option>
+                    <option value="Audio">Audio</option>
+                    <option value="Photos">Photos</option>
+                    <option value="Manuscripts">Manuscripts</option>
+                    <option value="Newspapers">Newspapers</option>
+                    <option value="Film and Videos">Film and Videos</option>
+                    <option value="Notated Music">Notated Music</option>
+                    <option value="Websites">Websites</option>
+                </select>
+                <button type="button" id="search-button">Click Me</button>
             </form>
         </div>
     </main>
+
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
