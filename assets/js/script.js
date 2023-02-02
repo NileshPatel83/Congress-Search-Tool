@@ -79,6 +79,20 @@ async function processResults(searchText, searchFormat){
     let congressResults = await getLocalCongressResults(searchURL);
 
     console.log(congressResults);
+
+    //Displays search text heading.
+    displaySearchText(searchText);
+
+    //Displays search results.
+    dispalySearchResults(congressResults);
+}
+
+//Displays search text heading.
+function displaySearchText(searchText){
+
+    let spanEl = document.getElementById('result-text-span');
+    spanEl.textContent = searchText;
+    spanEl.style.marginLeft = 0;
 }
 
 //Gets the search results from local.gov.
