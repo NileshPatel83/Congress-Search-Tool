@@ -4,6 +4,8 @@ const queryURL = 'https://www.loc.gov';
 
 //Gets DOM obects.
 let searchButtonEl = document.querySelector('#search-button');
+let searchTextEl = document.getElementById('search-text');
+let searchFormatEl = document.getElementById('search-format');
 
 init();
 
@@ -11,10 +13,8 @@ searchButtonEl.addEventListener('click', startSearchProcess);
 
 //Starts the process when 'Click Me' button is clicked.
 function startSearchProcess(event){
-    event.preventDefault();
 
-    let searchTextEl = document.querySelector('#search-text');
-    let searchFormatEl = document.querySelector('#search-format');
+    event.preventDefault();
 
     //Gets the value of search text and selection.
     let searchText = searchTextEl.value;
@@ -22,11 +22,11 @@ function startSearchProcess(event){
 
     //Checks whether the search text is entered and selection is made.
     //Exists the function if any of the is empty.
-    if(searchText === "" || searchFormat === "") return;
+    if(searchText === '' || searchFormat === '') return;
 
     //Clears the inputs on form.
-    searchTextEl.value = "";
-    searchFormatEl.value = "";
+    searchTextEl.value = '';
+    searchFormatEl.value = '';
 
     //If the search button in index page is clicked, launces search result page.
     if(parseInt(searchButtonEl.getAttribute(searchBtnAtr)) === 0){
@@ -54,6 +54,10 @@ function init(){
 
     //Gets search format from query text.
     let searchFormat = queryParams[1].substring(queryParams[1].indexOf('=') + 1);
+
+    //Clears the inputs on form.
+    searchTextEl.value = searchText;
+    searchFormatEl.value = searchFormat;
 
     //Gets the search results and displays them on page.
     processResults(searchText, searchFormat);
