@@ -13,9 +13,9 @@
     <main>
         <div class="content">
             <h1>Library of Congress Search Engine</h1>
-            <form>
+            <form id="main-form">
                 <input type="text" id="search-text" name="search-text" placeholder="Search Text" required>
-                <select id="search-fromat" name="search-fromat" required>
+                <select id="search-format" name="search-format" required>
                     <option value disabled selected>Select a format...</option>
                     <option value="Maps">Maps</option>
                     <option value="Audio">Audio</option>
@@ -26,7 +26,7 @@
                     <option value="Notated Music">Notated Music</option>
                     <option value="Websites">Websites</option>
                 </select>
-                <button type="button" id="search-button">Click Me</button>
+                <button type="button" id="search-button" data-index="0">Search</button>
             </form>
         </div>
     </main>

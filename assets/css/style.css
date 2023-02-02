@@ -33,6 +33,12 @@ main{
     flex-direction: column;
 }
 
+.result-main{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
 .content{
     background-color: var(--content-color);
     width: 75%;
@@ -42,20 +48,16 @@ main{
     text-align: center;
 }
 
-.result-main{
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-}
-
 .form-content{
     width: 25%;
+    min-width: 12rem;
     background-color: var(--content-color);
     padding: 1rem;
 }
 
-.result-content{
+.result-cotainer{
     width: 75%;
+    min-width: 25rem;
 }
 
 h1{
@@ -71,7 +73,7 @@ h2{
 
 input, select, button{
     width: 100%;
-    margin: 0.3rem;
+    margin: 0.3rem 0;
     line-height: 2rem;
     padding: 0.3rem;
     font-size: 1.2rem;
@@ -81,8 +83,20 @@ button{
     background-color: var(--submit-button-color);
     border: none;
     border-radius: 0.3rem;
+    cursor: pointer;
 }
 
 #goback-button{
+    text-decoration:  none;
+    color: black;
     background-color: var(--goback-button-color);
+    display: block;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin: 0.3rem 0;
+    line-height: 2rem;
+    padding: 0.3rem 0;
+    font-size: 1.2rem;
+    text-align: center;
 }
