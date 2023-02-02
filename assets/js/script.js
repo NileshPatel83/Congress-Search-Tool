@@ -1,5 +1,6 @@
 //Constants
 const searchBtnAtr = 'data-index';
+const queryURL = 'https://www.loc.gov';
 
 //Gets DOM obects.
 let searchButtonEl = document.querySelector('#search-button');
@@ -54,5 +55,32 @@ function init(){
     //Gets search format from query text.
     let searchFormat = queryParams[1].substring(queryParams[1].indexOf('=') + 1);
 
+    //Gets the search results and displays them on page.
     processResults(searchText, searchFormat);
+}
+
+//Gets the search results and displays them on page.
+async function processResults(searchText, searchFormat){
+
+    //Replaces space with '-' in search format.
+    searchFormat = searchFormat.replace(' ', '-');
+
+    //Makes the firts character lower case.
+    searchFormat = searchFormat.charAt(0).toLowerCase() + searchFormat.substring(1);
+
+    //Creates the search URL using search text and format.
+    let searchURL = `${queryURL}/${searchFormat}/?q=${searchText}&fo=json`;
+
+    //Gets the search results from local.gov.
+    let congressResults = await getLocalCongressResults(searchURL);
+
+    console.log(congressResults);
+}
+
+//Gets the search results from local.gov.
+async function getLocalCongressResults(searchURL){
+
+    const response = await fetch(searchURL);
+
+    return response.json();
 }
