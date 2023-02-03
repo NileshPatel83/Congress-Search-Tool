@@ -71,6 +71,11 @@ h2, #result-text-span{
     color: var(--font-color-white);
 }
 
+a{
+    text-decoration: none;
+    color: var(--font-color-white);
+}
+
 input, select, button{
     width: 100%;
     margin: 0.3rem 0;
@@ -99,4 +104,31 @@ button{
     padding: 0.3rem 0;
     font-size: 1.2rem;
     text-align: center;
+}
+
+.result{
+    background-color: var(--content-color);
+    padding: 1rem;
+    margin: 1rem;
+}
+
+h3{
+    font-size: 1.25rem;
+}
+
+.result-date, .result-subject, .result-description{
+    font-weight: 700;
+    line-height: 1.5rem;
+    margin:0.5rem 0.5rem 0.5rem 0;
+}
+
+.readmore-button{
+    background-color: var(--background-color);
+    width: 7rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.font-normal{
+    font-weight: 400;
 }

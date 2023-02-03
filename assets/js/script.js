@@ -66,6 +66,9 @@ function init(){
 //Gets the search results and displays them on page.
 async function processResults(searchText, searchFormat){
 
+    //Displays search text heading.
+    displaySearchText(searchText);
+
     //Replaces space with '-' in search format.
     searchFormat = searchFormat.replace(' ', '-');
 
@@ -77,21 +80,134 @@ async function processResults(searchText, searchFormat){
 
     //Gets the search results from local.gov.
     let congressResults = await getLocalCongressResults(searchURL);
-
-    console.log(congressResults);
-
-    //Displays search text heading.
-    displaySearchText(searchText);
+    if(typeof(congressResults) === 'undefined') return;
 
     //Displays search results.
-    dispalySearchResults(congressResults);
+    if(congressResults.results.length > 0){
+        dispalySearchResults(congressResults);
+    }
+}
+
+//Displays search results.
+function dispalySearchResults(congressResults){
+
+    //Gets the container div element. All search results will be displayed in this div.
+    let resultContainerEl = document.getElementById('result-content');
+
+    //Loops throgh all resutls and displays them on page.
+    for (let i = 0; i < congressResults.results.length; i++) {
+       
+        let result = congressResults.results[i];
+
+        //Sets the title value to title.
+        //If title value is empty then sets the value to 'No Title.'
+        let title = 'No Title';
+        if(typeof(result.title) !== 'undefined') {
+            title = result.title;
+        }
+        
+        //Sets the date value.
+        //If date value is empty then sets the value to 'No Date.'
+        let date = 'No Date';
+        if(typeof(result.date) !== 'undefined') date = result.date;
+
+        //Sets the subject value.
+        //If subject value is empty then sets the value to 'No Subject.'
+        let subject = 'No Subject';
+        if(typeof(result.subject) !== 'undefined') {
+            subject = result.subject.join(', ');
+        }
+
+        //Sets the description value.
+        //If description value is empty then sets the value to 'No Description.'
+        let description = 'No Description';
+        if(typeof(result.description) !== 'undefined') {
+            description = result.description;
+        }
+
+        //Set the id value.
+        //This value is URL for the search.
+        let id = '#';
+        if(typeof(result.id) !== 'undefined') id = result.id;
+
+        //Creates an outer div that contains heading, date, subject and description.
+        let outerDivEl = document.createElement('div');
+        outerDivEl.classList.add('result'); 
+
+        //Creates heading element and sets the value to title.
+        let resultHeadingEl = document.createElement('h3');
+        resultHeadingEl.classList.add('result-heading'); 
+        resultHeadingEl.textContent = title;
+
+        //Creates date text element.
+        let resultDateEl = document.createElement('div');
+        resultDateEl.textContent = 'Date: ';
+        resultDateEl.classList.add('result-date'); 
+
+        //Creates date value element and sets the value to date.
+        let dateSpanEl = document.createElement('span');     
+        dateSpanEl.textContent = date;
+        dateSpanEl.classList.add('font-normal'); 
+
+        //Adds date value to date text.
+        resultDateEl.append(dateSpanEl);
+
+        //Creates subject text element.
+        let resultSubjectEl = document.createElement('div');
+        resultSubjectEl.textContent = 'Subjects: ';
+        resultSubjectEl.classList.add('result-subject'); 
+
+        //Creates subject value element and sets the value to subject.
+        let subjectSpanEl = document.createElement('span');     
+        subjectSpanEl.textContent = subject;
+        subjectSpanEl.classList.add('font-normal'); 
+
+        //Adds subject value to subject text.
+        resultSubjectEl.append(subjectSpanEl);
+
+        //Creates description text element.
+        let resultDescEl = document.createElement('div');
+        resultDescEl.textContent = 'Description: ';
+        resultDescEl.classList.add('result-description'); 
+
+        //Creates description value element and sets the value to description.
+        let descSpanEl = document.createElement('span');     
+        descSpanEl.textContent = description;
+        descSpanEl.classList.add('font-normal'); 
+
+        //Adds description value to description text.
+        resultDescEl.append(descSpanEl);
+
+        //Creates 'Read More' button.
+        let readMoreBtnEl = document.createElement('button');
+        readMoreBtnEl.classList.add('readmore-button'); 
+
+        //Creates anchor tag for read me button for search result.
+        let readMoreAnchorEl = document.createElement('a');
+        readMoreAnchorEl.setAttribute('href', id);
+        readMoreAnchorEl.setAttribute('target','_blank');
+        readMoreAnchorEl.innerText = 'Read More';
+
+        //Adds anchor tag to read me button.
+        readMoreBtnEl.append(readMoreAnchorEl);
+
+        //Adds heading, date, subject and description elements to outer div element.
+        outerDivEl.append(resultHeadingEl, resultDateEl, resultSubjectEl, resultDescEl, readMoreBtnEl);
+
+        //Adds outer div to result container.
+        resultContainerEl.append(outerDivEl);
+    }
+
 }
 
 //Displays search text heading.
 function displaySearchText(searchText){
 
+    //Gets the search heading span element.
     let spanEl = document.getElementById('result-text-span');
-    spanEl.textContent = searchText;
+    spanEl.textContent = `'${searchText}'`;
+
+    //Sets the left margin to 0 as default left margin is applied through style.css.
     spanEl.style.marginLeft = 0;
 }
 
