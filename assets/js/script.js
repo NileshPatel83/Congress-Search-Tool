@@ -17,7 +17,7 @@ function startSearchProcess(event){
     event.preventDefault();
 
     //Gets the value of search text and selection.
-    let searchText = searchTextEl.value;
+    let searchText = searchTextEl.value.replace(' ', '_');
     let searchFormat = searchFormatEl.value;
 
     //Checks whether the search text is entered and selection is made.
@@ -28,14 +28,16 @@ function startSearchProcess(event){
     searchTextEl.value = '';
     searchFormatEl.value = '';
 
-    //If the search button in index page is clicked, launces search result page.
-    if(parseInt(searchButtonEl.getAttribute(searchBtnAtr)) === 0){
-        window.location.replace(`search-results.html?search=${searchText}&format=${searchFormat}`);
+    window.location.replace(`search-results.html?search=${searchText}&format=${searchFormat}`);
 
-    //If the search button in result page is clicked, displays the result.
-    } else {
-        processResults(searchText, searchFormat);
-    }
+    // //If the search button in index page is clicked, launces search result page.
+    // if(parseInt(searchButtonEl.getAttribute(searchBtnAtr)) === 0){
+    //     window.location.replace(`search-results.html?search=${searchText}&format=${searchFormat}`);
+
+    // //If the search button in result page is clicked, displays the result.
+    // } else {
+    //     processResults(searchText, searchFormat);
+    // }
 }
 
 function init(){
@@ -51,6 +53,7 @@ function init(){
 
     //Gets search text from query text.
     let searchText = queryParams[0].substring(queryParams[0].indexOf('=') + 1);
+    searchText = searchText.replace('_', ' ');
 
     //Gets search format from query text.
     let searchFormat = queryParams[1].substring(queryParams[1].indexOf('=') + 1);
