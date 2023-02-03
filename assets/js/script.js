@@ -83,9 +83,7 @@ async function processResults(searchText, searchFormat){
     if(typeof(congressResults) === 'undefined') return;
 
     //Displays search results.
-    if(congressResults.results.length > 0){
-        dispalySearchResults(congressResults);
-    }
+    dispalySearchResults(congressResults);
 }
 
 //Displays search results.
@@ -93,6 +91,20 @@ function dispalySearchResults(congressResults){
 
     //Gets the container div element. All search results will be displayed in this div.
     let resultContainerEl = document.getElementById('result-content');
+
+    //Displays no result found if fails to find any result.
+    if(congressResults.results.length === 0){
+
+        let noResultHeadingEl = document.createElement('h3');
+        noResultHeadingEl.classList.add('result-heading'); 
+        noResultHeadingEl.style.color = 'white';
+        noResultHeadingEl.style.marginLeft = '1rem';
+        noResultHeadingEl.textContent = 'Sorry, No results found.';
+
+        resultContainerEl.append(noResultHeadingEl);
+
+        return;
+    }
 
     //Loops throgh all resutls and displays them on page.
     for (let i = 0; i < congressResults.results.length; i++) {
